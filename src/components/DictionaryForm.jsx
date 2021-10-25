@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import DictionaryList from '../components/DictionaryList';
+import AddToDictionary from '../components/AddToDictionary';
 
 class DictionaryForm extends Component {
         constructor(props) {
             super(props);
             this.state = {items: [], text: ''};
         }
+        
         deleteWord(wordToBeDeleted) {
             const deletingOneOfTheWords = this.state.items.filter((word) => {
                 return word != wordToBeDeleted
@@ -28,13 +30,13 @@ class DictionaryForm extends Component {
         render() {
                 return (
                     <div>
-                    <form onSubmit={this.handleSubmit.bind(this)}>
-                        <input type="text" onChange = {this.handleChange.bind(this)} value={this.state.text} />
-                        <button type="submit"> Add to Dictionary </button>
-                    </form>
-                    <DictionaryList 
-                        items = {this.state.items} 
-                        onDelete = {this.deleteWord.bind(this)}/>
+                        <AddToDictionary
+                            handleChange = {this.handleChange.bind(this)}
+                            handleSubmit = {this.handleSubmit.bind(this)}
+                        />
+                        <DictionaryList 
+                            items = {this.state.items} 
+                            onDelete = {this.deleteWord.bind(this)}/>
                     </div>
                     
                 );
